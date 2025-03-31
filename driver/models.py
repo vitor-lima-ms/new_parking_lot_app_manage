@@ -10,4 +10,4 @@ class Driver(models.Model):
     file_upload = models.FileField(upload_to='uploaded_files', blank=True)
 
     def __str__(self):
-        return f'{self.driver_name} - {self.cpf}'
+        return f'{self.driver_name} - CPF: {self.cpf}'
