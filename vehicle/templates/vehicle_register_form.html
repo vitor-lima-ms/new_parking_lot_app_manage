@@ -6,8 +6,7 @@
     {% else %}
         <form action="{% url "vehicle:saving_vehicle" %}" method="post">
             {% csrf_token %}
-            <span>Nome/CPF do motorista: {{ form.driver }}</span><br>
-            <span>Modelo: {{ form.model }}</span><br>
+                <span>Modelo: {{ form.model }}</span><br>
             <span>Placa: {{ form.vehicle_plate }}</span><br>
             <input type="submit" value="Enviar">
         </form>
