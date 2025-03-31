@@ -3,16 +3,18 @@
 {% block content %}
     <div id="parking_spaces">        
         {% if monthly %}
-            <span>Vaga {{ parking_space.id }}</span>
-            <span>Horário de entrada: {{ checkin_datetime }}</span>
-            <span>Horário de saída: {{ current_datetime }}</span>
-            <span>{{ time_delta }}</span>
+            <span><b>Vaga:</b> {{ parking_space.id }}</span><br>
+            <span><b>Horário de entrada:</b> {{ checkin_datetime }}</span><br>
+            <span><b>Horário de saída:</b> {{ current_datetime }}</span><br>
+            <span>{{ time_delta }}</span><br>
+            <br>
         {% else %}
-            <span>Vaga {{ parking_space.id }}</span>
-            <span>Horário de entrada: {{ checkin_datetime }}</span>
-            <span>Horário de saída: {{ current_datetime }}</span>
-            <span>{{ time_delta }}</span>
-            <span>Total: R$ {{ price }}</span>
+            <span><b>Vaga:</b> {{ parking_space.id }}</span><br>
+            <span><b>Horário de entrada:</b> {{ checkin_datetime }}</span><br>
+            <span><b>Horário de saída:</b> {{ current_datetime }}</span><br>
+            <span>{{ time_delta }}</span><br>
+            <span><b>Total:</b> R$ {{ price }}</span><br>
+            <br>
         {% endif %}
         <form action="{% url "core:finish" parking_space.id parking_space.occupied_by.id %}" method="post">
             {% csrf_token %}
