@@ -6,9 +6,10 @@ from driver.models import Driver
 class Vehicle(models.Model):
     driver = models.ForeignKey(
         Driver,
+        blank=True,
         null=True,
-        on_delete=models.SET_NULL,
-        default=None
+        default=None,
+        on_delete=models.SET_DEFAULT,
     )
     model = models.CharField(max_length=50)
     vehicle_plate = models.CharField(max_length=7)
