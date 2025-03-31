@@ -1,7 +1,7 @@
 from django.views.generic.edit import FormView
 from vehicle.my_forms import VehicleSearchForm
 from parking_space.my_forms import ParkingSpaceCreationForm, ParkingAssignmentForm
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from parking_space.models import ParkingSpace
 from vehicle.models import Vehicle
 
@@ -20,13 +20,20 @@ def parking_space_history(request, parking_space_id):
     return render(request, 'parking_space_history.html', {'parking_space': parking_space, 'form': form})
 
 """View that displays only vehicle that match the search by plate, in parking space history"""
-def plate_search(request):
+def parking_space_history_plate_search(request):
     form = VehicleSearchForm(request.POST)
 
     if form.is_valid():
         vehicle = get_object_or_404(Vehicle, vehicle_plate=form.cleaned_data['plate_search'])
+        plate = vehicle.vehicle_plate
+        parking_places = ParkingSpace.objects.all()
+        search_result = list()
+        for parking_place in parking_places:
+            for vehicle in parking_place.history:
+                if vehicle['vehicle_plate'] == plate:
+                    search_result.append(vehicle)
 
-        return render(request, 'plate_search.html', {'vehicle': vehicle})
+        return render(request, 'parking_space_history_plate_search.html', {'search_result': search_result})
 
 """View that allows assign autos to parking spaces"""
 class ParkingAssignmentFormView(FormView):
@@ -42,9 +49,10 @@ def saving_parking_place(request):
         parking_space.occupied_by = form.cleaned_data['occupied_by']
         parking_space.save()
         
-        auto = get_object_or_404(Vehicle, vehicle_plate=form.cleaned_data['occupied_by'].vehicle_plate)
-        auto.parked = True
-        auto.save()
+        vehicle = get_object_or_404(Vehicle, vehicle_plate=form.cleaned_data['occupied_by'].vehicle_plate)
+        vehicle.parked = True
+        vehicle.driver = form.cleaned_data['driver']
+        vehicle.save()
     
     return redirect('core:index')
 
