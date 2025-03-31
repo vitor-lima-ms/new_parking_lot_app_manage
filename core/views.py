@@ -32,12 +32,21 @@ def pre_finish(request, parking_space_id):
 
     fmt_price = f'{price:.2f}'.replace('.', ',')
 
+    if bool(parking_space.occupied_by.driver.monthly) == False:
+        return render(request, 'core_pre_finish.html', {
+            'monthly': False,
+            'parking_space': parking_space,
+            'checkin_datetime': checkin_datetime,
+            'current_datetime': current_datetime,
+            'price': fmt_price,
+        })
+    
     return render(request, 'core_pre_finish.html', {
-        'parking_space': parking_space,
-        'checkin_datetime': checkin_datetime,
-        'current_datetime': current_datetime,
-        'price': fmt_price,
-    })
+            'monthly': True,
+            'parking_space': parking_space,
+            'checkin_datetime': checkin_datetime,
+            'current_datetime': current_datetime,
+        })
 
 def finish(request, parking_space_id, vehicle_id):
     parking_space = get_object_or_404(ParkingSpace, id=parking_space_id)
