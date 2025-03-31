@@ -1,6 +1,7 @@
 from django import forms
 from parking_space.models import ParkingSpace
 from vehicle.models import Vehicle
+from driver.models import Driver
 
 """Allows you to create new parking spaces"""
 CHOICES_LIST = list()
@@ -19,4 +20,8 @@ class ParkingAssignmentForm(forms.Form):
     occupied_by = forms.ModelChoiceField(
         Vehicle.objects.filter(parked=False),
         to_field_name='model'
+    )
+    driver = forms.ModelChoiceField(
+        Driver.objects.all(),
+        to_field_name='driver_name',
     )
