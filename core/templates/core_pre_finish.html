@@ -1,12 +1,19 @@
 {% extends "core_index.html" %}
 
 {% block content %}
-    <div id="parking_spaces">
-        <span>Vaga {{ parking_space.id }}</span>
-        <span>Horário de entrada: {{ checkin_datetime }}</span>
-        <span>Horário de saída: {{ current_datetime }}</span>
-        <span>{{ time_delta }}</span>
-        <span>Total: R$ {{ price }}</span>
+    <div id="parking_spaces">        
+        {% if monthly %}
+            <span>Vaga {{ parking_space.id }}</span>
+            <span>Horário de entrada: {{ checkin_datetime }}</span>
+            <span>Horário de saída: {{ current_datetime }}</span>
+            <span>{{ time_delta }}</span>
+        {% else %}
+            <span>Vaga {{ parking_space.id }}</span>
+            <span>Horário de entrada: {{ checkin_datetime }}</span>
+            <span>Horário de saída: {{ current_datetime }}</span>
+            <span>{{ time_delta }}</span>
+            <span>Total: R$ {{ price }}</span>
+        {% endif %}
         <form action="{% url "core:finish" parking_space.id parking_space.occupied_by.id %}" method="post">
             {% csrf_token %}
             <input type="submit" value="Confirmar pagamento">
