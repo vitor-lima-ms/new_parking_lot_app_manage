@@ -14,5 +14,3 @@ class VehicleAdmin(admin.ModelAdmin):
 
     class Meta:
         ordering = (('-checkin_datetime',))
-        verbose_name = 'Vehicle'
-        verbose_name_plural = 'Vehicles'
