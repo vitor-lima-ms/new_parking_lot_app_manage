@@ -20,7 +20,7 @@ def saving_vehicle(request):
                 return render(request, 'vehicle_register_form.html', {'error': 'Automóvel já cadastrado!'})
         except:
             Vehicle.objects.create(
-                driver=form.cleaned_data['driver'],
+                # driver=form.cleaned_data['driver'],
                 model=form.cleaned_data['model'],
                 vehicle_plate=form.cleaned_data['vehicle_plate'],
             )
