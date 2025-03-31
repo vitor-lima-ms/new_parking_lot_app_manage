@@ -14,9 +14,10 @@
     <section>
         {% for vehicle in all_registered_vehicles %}
             <div id="registered_vehicles">
-                <span>Motorista: {{ vehicle.driver }}</span><br>
-                <span>Modelo: {{ vehicle.model }}</span><br>
-                <span>Placa: {{ vehicle.vehicle_plate }}</span><br>
+                <span><b>Motorista:</b> {{ vehicle.driver }}</span><br>
+                <span><b>Modelo:</b> {{ vehicle.model }}</span><br>
+                <span><b>Placa:</b> {{ vehicle.vehicle_plate }}</span><br>
+                <br>
             </div>
         {% endfor %}
     </section>
