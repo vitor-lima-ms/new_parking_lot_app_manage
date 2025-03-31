@@ -14,10 +14,11 @@
     <section>
         {% for driver in all_registered_drivers %}
             <div id="registered_drivers">
-                <span>Nome: {{ driver.driver_name }}</span><br>
-                <span>Mensalista: {{ driver.monthly }}</span><br>
-                <span>CNH: {{ driver.cnh }}</span><br>
-                <span>CPF: {{ driver.cpf }}</span><br>
+                <span><b>Nome:</b> {{ driver.driver_name }}</span><br>
+                <span><b>Mensalista:</b> {{ driver.monthly }}</span><br>
+                <span><b>CNH:</b> {{ driver.cnh }}</span><br>
+                <span><b>CPF:</b> {{ driver.cpf }}</span><br>
+                <br>
             </div>
         {% endfor %}
     </section>
