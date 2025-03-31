@@ -1,0 +1,18 @@
+{% extends "core_index.html" %}
+
+{% block content %}
+    <h2>Resultado da busca - Automóveis</h2>
+    <section>
+        <div id="plate_search">
+            {% comment %} <span><b>Motorista:</b> {{ vehicle.driver }}</span><br> {% endcomment %}
+            {% for vehicle in search_result %}
+                <span><b>Automóvel:</b> {{ vehicle.model }}</span><br>
+                <span><b>Motorista:</b> {{ vehicle.driver }}</span><br>
+                <span><b>Entrada:</b> {{ vehicle.checkin_datetime }}</span><br>
+                <span><b>Saída:</b> {{ vehicle.checkout_datetime }}</span><br>
+                <span><b>Tempo total:</b> {{ vehicle.total_time }}</span><br>
+                <br>
+            {% endfor %}                      
+        </div>        
+    </section>
+{% endblock content %}
