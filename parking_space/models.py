@@ -1,6 +1,6 @@
 from django.db import models
 from vehicle.models import Vehicle
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 # Create your models here.
 
@@ -28,16 +28,18 @@ class ParkingSpace(models.Model):
     
     """Function to create the history of the parking space"""
     def add_history(self):
-        current_datetime = datetime.now(timezone.utc)
+        current_datetime = datetime.now(timezone(timedelta(hours=-3)))
         occupied_by = self.occupied_by
+        driver = self.occupied_by.driver
         vehicle_plate = self.occupied_by.vehicle_plate
-        checkin_datetime = self.occupied_by.checkin_datetime
+        checkin_datetime = self.occupied_by.checkin_datetime.replace(hour=datetime.now(timezone(timedelta(hours=-3))).hour)
         total_time = current_datetime - self.occupied_by.checkin_datetime
-        
+
         self.history.append({
             'model': str(occupied_by),
+            'driver': str(driver),
             'vehicle_plate': str(vehicle_plate),
-            'checkin_datetime': str(checkin_datetime),
-            'checkout_datetime': str(current_datetime),
+            'checkin_datetime': str(checkin_datetime.strftime('%d/%m/%Y - %H:%M:%S')),
+            'checkout_datetime': str(current_datetime.strftime('%d/%m/%Y - %H:%M:%S')),
             'total_time': str(total_time),
         })
