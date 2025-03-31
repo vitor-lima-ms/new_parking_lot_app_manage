@@ -1,0 +1,22 @@
+{% extends "core_index.html" %}
+
+{% block content %}
+    <h2>Histórico de ocupação - {{ parking_space }}</h2>
+    <section>
+        <form action="{% url "parking_space:plate_search" %}" method="post">
+            {% csrf_token %}
+            Placa do veículo: {{ form.plate_search }}
+            <input type="submit" value="Buscar">
+            <br>
+            <br>
+        </form>
+    <section>
+        {% for vehicle in parking_space.history %}
+            <b>Automóvel:</b> {{ vehicle.model }}<br>
+            <b>Entrada:</b> {{ vehicle.checkin_datetime }}<br>
+            <b>Saída:</b> {{ vehicle.checkout_datetime }}<br>
+            <b>Tempo total:</b> {{ vehicle.total_time }}<br>
+            <br>
+        {% endfor %}
+    </section>
+{% endblock content %}

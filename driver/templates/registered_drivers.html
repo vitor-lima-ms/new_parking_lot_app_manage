@@ -1,0 +1,24 @@
+{% extends "core_index.html" %}
+
+{% block content %}
+    <h2>Motoristas cadastrados</h2>
+    <section>
+        <form action="{% url "driver:driver_search" %}" method="post">
+            {% csrf_token %}
+            Nome do motorista: {{ form.name_search }}
+            <input type="submit" value="Buscar">
+            <br>
+            <br>
+        </form>
+    </section>
+    <section>
+        {% for driver in all_registered_drivers %}
+            <div id="registered_drivers">
+                <span>Nome: {{ driver.driver_name }}</span><br>
+                <span>Mensalista: {{ driver.monthly }}</span><br>
+                <span>CNH: {{ driver.cnh }}</span><br>
+                <span>CPF: {{ driver.cpf }}</span><br>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock content %}

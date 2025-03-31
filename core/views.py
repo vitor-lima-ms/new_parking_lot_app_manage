@@ -1,0 +1,52 @@
+from parking_space.my_forms import ParkingSpaceCreationForm
+from parking_space.models import ParkingSpace
+from django.shortcuts import render, redirect, get_object_or_404
+from datetime import datetime, timezone
+from base_dir.functions import price_calculator
+from vehicle.models import Vehicle
+
+# Create your views here.
+
+"""Main page"""
+def index(request):
+    form = ParkingSpaceCreationForm(request.POST)
+
+    if form.is_valid():
+        for _ in range(form.cleaned_data['qtd']):
+            ParkingSpace.objects.create()
+    
+    parking_spaces = ParkingSpace.objects.filter(occupied=False)
+
+    return render(request, 'core_index.html', {'parking_spaces': parking_spaces})
+
+"""In this view, we calculate the amount to be paid and see all relevant information before receiving payment and releasing the parking space"""
+def pre_finish(request, parking_space_id):
+    parking_space = get_object_or_404(ParkingSpace, id=parking_space_id)
+    
+    checkin_datetime = parking_space.occupied_by.checkin_datetime
+    current_datetime = datetime.now(timezone.utc)
+
+    time_delta = current_datetime - checkin_datetime
+
+    price = round(price_calculator(time_delta), 2)
+
+    fmt_price = f'{price:.2f}'.replace('.', ',')
+
+    return render(request, 'core_pre_finish.html', {
+        'parking_space': parking_space,
+        'checkin_datetime': checkin_datetime,
+        'current_datetime': current_datetime,
+        'price': fmt_price,
+    })
+
+def finish(request, parking_space_id, vehicle_id):
+    parking_space = get_object_or_404(ParkingSpace, id=parking_space_id)
+    vehicle = get_object_or_404(Vehicle, id=vehicle_id)
+
+    parking_space.add_history()
+    parking_space.remove_auto()
+    vehicle.parked = False
+    vehicle.save()
+    parking_space.save()
+
+    return redirect('core:index')

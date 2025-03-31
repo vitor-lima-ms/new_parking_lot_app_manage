@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estacionamento</title>
+</head>
+<body>
+    <h1>Estacionamento do Bosque</h1>
+    <nav>
+        <a href="{% url "driver:driver_register_form" %}">Cadastro de motoristas</a>
+        <a href="{% url "driver:registered_drivers" %}">Motoristas cadastrados</a>
+        <a href="{% url "vehicle:vehicle_register_form" %}">Cadastro de veículos</a>
+        <a href="{% url "vehicle:registered_vehicle" %}">Veículos cadastrados</a>
+        <a href="{% url "core:index" %}">Vagas disponíveis</a>
+        <a href="{% url "parking_space:occupied_parking_spaces" %}">Vagas ocupadas</a>
+        <a href="{% url "parking_space:parking_creation_form" %}">Criar vagas</a>
+    </nav>
+    <main>
+        {% block content %}
+            <h2>Vagas disponíveis</h2>
+            {% for parking_space in parking_spaces %}
+                <a href="{% url "parking_space:parking_space_history" parking_space.id %}">{{ parking_space }}</a>
+            {% endfor %}
+        {% endblock content %}
+    </main> 
+</body>
+</html>

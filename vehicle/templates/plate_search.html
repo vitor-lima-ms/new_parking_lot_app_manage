@@ -1,0 +1,12 @@
+{% extends "core_index.html" %}
+
+{% block content %}
+    <h2>Resultado da busca</h2>
+    <section>
+        <div id="plate_search">
+            <span>Motorista: {{ vehicle.driver }}</span><br>
+            <span>Modelo: {{ vehicle.model }}</span><br>
+            <span>Placa: {{ vehicle.vehicle_plate }}</span><br>
+        </div>        
+    </section>
+{% endblock content %}

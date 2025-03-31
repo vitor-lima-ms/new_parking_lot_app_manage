@@ -1,0 +1,9 @@
+{% extends "core_index.html" %}
+
+{% block content %}
+    <form action="{% url "core:index" %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Enviar">
+    </form>
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends "core_index.html" %}
+
+{% block content %}
+    <h2>Motoristas cadastrados</h2>
+    <section>
+        {% for driver in drivers %}
+            <div id="driver_search">
+                <span>Nome: {{ driver.driver_name }}</span>
+                <span>Mensalista: {{ driver.monthly }}</span>
+                <span>CNH: {{ driver.cnh }}</span>
+                <span>CPF: {{ driver.cpf }}</span>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock content %}
