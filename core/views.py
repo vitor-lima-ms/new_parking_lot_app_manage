@@ -55,6 +55,7 @@ def finish(request, parking_space_id, vehicle_id):
     parking_space.add_history()
     parking_space.remove_auto()
     vehicle.parked = False
+    vehicle.driver = None
     vehicle.save()
     parking_space.save()
 
