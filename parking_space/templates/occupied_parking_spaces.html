@@ -5,10 +5,11 @@
     <section>
         {% for parking in occupied_parking_spaces %}
             <div id="parking_spaces">
-                <span>Vaga {{ parking.id }}</span>
-                <span>Veículo: {{ parking.occupied_by }}</span>
-                <span>Horário de entrada: {{ parking.occupied_by.checkin_datetime }}</span>
-                <a href="{% url "core:pre_finish" parking.id %}">Finalizar</a>
+                <span><b>Vaga:</b> {{ parking.id }}</span><br>
+                <span><b>Veículo:</b> {{ parking.occupied_by }}</span><br>
+                <span><b>Horário de entrada:</b> {{ parking.occupied_by.checkin_datetime }}</span><br>
+                <a href="{% url "core:pre_finish" parking.id %}">Finalizar</a><br>
+                <br>
             </div>
         {% endfor %}
     </section>
