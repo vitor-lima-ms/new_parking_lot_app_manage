@@ -8,7 +8,8 @@ class DriverAdmin(admin.ModelAdmin):
     list_display = [
         'driver_name',
         'cnh',
-        'cpf'
+        'cpf',
+        'file_upload',
     ]
 
     class Meta:
