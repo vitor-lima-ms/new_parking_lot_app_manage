@@ -1,0 +1,9 @@
+{% extends "core_index.html" %}
+
+{% block content %}
+    <section>
+        {% for driver in drivers %}
+            <a href="{{ driver.file_upload.url }}">{{ driver.driver_name }}</a>
+        {% endfor %}
+    </section>
+{% endblock content %}
