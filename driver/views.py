@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
 from django.views.generic.edit import FormView
 from driver.my_forms import DriverRegisterForm, DriverSearchForm
 from driver.models import Driver
 from django.db.models import Q
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from base_dir.functions import cpf_validator
+from django.db import models
 
 # Create your views here.
 
@@ -13,7 +14,8 @@ class DriverRegisterFormView(FormView):
     form_class = DriverRegisterForm
 
 def saving_driver(request):    
-    form = DriverRegisterForm(request.POST)
+    form = DriverRegisterForm(request.POST, request.FILES)
+    file = request.FILES['file_upload']
     
     if form.is_valid():
         drivers = Driver.objects.filter(Q(cpf=form.cleaned_data['cpf']) | Q(cnh=form.cleaned_data['cnh']))
@@ -29,11 +31,11 @@ def saving_driver(request):
                 monthly=form.cleaned_data['monthly'],
                 cnh=form.cleaned_data['cnh'],
                 cpf=form.cleaned_data['cpf'],
-                file_upload=form.cleaned_data['file_upload']
+                file_upload=file,
             )
             driver.save()
     
-            return redirect('core:index')
+            return redirect('driver:registered_drivers')
         
         return render(request, 'driver_register_form.html', {
             'form': form,
@@ -49,6 +51,12 @@ def registered_drivers(request):
         'form': form,
         'all_registered_drivers': all_registered_drivers,
     })
+
+"""View that allows add a document to a especific driver"""
+def list_docs(request):
+    drivers = Driver.objects.filter(Q(file_upload__contains='.pdf') | Q(file_upload__contains='.jpg') | Q(file_upload__contains='.jpeg') | Q(file_upload__contains='.png'))
+
+    return render(request, 'list_docs.html', {'drivers': drivers})
 
 """View that displays only drivers that match the search by name"""
 def driver_search(request):
