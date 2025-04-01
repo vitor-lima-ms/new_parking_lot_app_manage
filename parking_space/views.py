@@ -32,6 +32,7 @@ def parking_space_history_plate_search(request):
             for vehicle in parking_place.history:
                 if vehicle['vehicle_plate'] == plate:
                     search_result.append(vehicle)
+                    vehicle['parking_place'] = parking_place
 
         return render(request, 'parking_space_history_plate_search.html', {'search_result': search_result})
 
