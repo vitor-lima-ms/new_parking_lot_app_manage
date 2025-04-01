@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('driver/', include('driver.urls')),
@@ -23,4 +25,4 @@ urlpatterns = [
     path('parking_space/', include('parking_space.urls')),
     path('', include('core.urls')),    
     path('admin_panel/', admin.site.urls),    
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
