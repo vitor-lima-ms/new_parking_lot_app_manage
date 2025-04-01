@@ -9,7 +9,6 @@ class VehicleAdmin(admin.ModelAdmin):
         'id',
         'model',
         'vehicle_plate',
-        'checkin_datetime',
     ]
 
     class Meta:
