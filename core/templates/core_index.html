@@ -23,6 +23,12 @@
             {% for parking_space in parking_spaces %}
                 <a href="{% url "parking_space:parking_space_history" parking_space.id %}">{{ parking_space }}</a>
             {% endfor %}
+            <h2>Buscar automóvel</h2>
+            <form action="{% url "parking_space:parking_space_history_plate_search" %}" method="post">
+                {% csrf_token %}
+                Placa do veículo: {{ form.plate_search }}
+                <input type="submit" value="Buscar">
+            </form>
         {% endblock content %}
     </main> 
 </body>
