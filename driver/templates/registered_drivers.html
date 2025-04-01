@@ -18,6 +18,10 @@
                 <span><b>Mensalista:</b> {{ driver.monthly }}</span><br>
                 <span><b>CNH:</b> {{ driver.cnh }}</span><br>
                 <span><b>CPF:</b> {{ driver.cpf }}</span><br>
+                {% if driver.file_upload %}
+                    <span><a href="{{ driver.file_upload.url }}" target="_blank"><b>Documento</b></a></span><br>
+                {% endif %}                
+                <br>
                 <br>
             </div>
         {% endfor %}
