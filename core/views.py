@@ -1,5 +1,6 @@
 from parking_space.my_forms import ParkingSpaceCreationForm
 from parking_space.models import ParkingSpace
+from vehicle.my_forms import VehicleSearchForm
 from django.shortcuts import render, redirect, get_object_or_404
 from datetime import datetime, timezone
 from base_dir.functions import price_calculator
@@ -17,7 +18,9 @@ def index(request):
     
     parking_spaces = ParkingSpace.objects.filter(occupied=False)
 
-    return render(request, 'core_index.html', {'parking_spaces': parking_spaces})
+    plate_search = VehicleSearchForm()
+
+    return render(request, 'core_index.html', {'parking_spaces': parking_spaces, 'form': plate_search})
 
 """In this view, we calculate the amount to be paid and see all relevant information before receiving payment and releasing the parking space"""
 def pre_finish(request, parking_space_id):
