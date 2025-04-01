@@ -4,8 +4,8 @@
     <h2>Resultado da busca - Automóveis</h2>
     <section>
         <div id="plate_search">
-            {% comment %} <span><b>Motorista:</b> {{ vehicle.driver }}</span><br> {% endcomment %}
             {% for vehicle in search_result %}
+                <span><b>Vaga:</b> {{ vehicle.parking_place }}</span><br>
                 <span><b>Automóvel:</b> {{ vehicle.model }}</span><br>
                 <span><b>Motorista:</b> {{ vehicle.driver }}</span><br>
                 <span><b>Entrada:</b> {{ vehicle.checkin_datetime }}</span><br>
