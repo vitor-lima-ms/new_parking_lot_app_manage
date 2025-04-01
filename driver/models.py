@@ -7,7 +7,7 @@ class Driver(models.Model):
     monthly = models.BooleanField(default=False)
     cnh = models.CharField(max_length=11)
     cpf = models.CharField(max_length=11)
-    file_upload = models.FileField(upload_to='uploaded_files', blank=True)
+    file_upload = models.FileField(upload_to='driver_docs/', blank=True)
 
     def __str__(self):
         return f'{self.driver_name} - CPF: {self.cpf}'
