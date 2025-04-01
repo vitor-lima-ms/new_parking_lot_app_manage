@@ -16,7 +16,7 @@
             <input type="submit" value="Enviar">
         </form>
     {% else %}
-        <form action="{% url "driver:saving_driver" %}" method="post">
+        <form action="{% url "driver:saving_driver" %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <span>Nome: {{ form.driver_name }}</span><br>
             <span>Mensalista: {{ form.monthly }}</span><br>
