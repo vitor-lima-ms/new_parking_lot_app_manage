@@ -52,12 +52,6 @@ def registered_drivers(request):
         'all_registered_drivers': all_registered_drivers,
     })
 
-"""View that allows add a document to a especific driver"""
-def list_docs(request):
-    drivers = Driver.objects.filter(Q(file_upload__contains='.pdf') | Q(file_upload__contains='.jpg') | Q(file_upload__contains='.jpeg') | Q(file_upload__contains='.png'))
-
-    return render(request, 'list_docs.html', {'drivers': drivers})
-
 """View that displays only drivers that match the search by name"""
 def driver_search(request):
     form = DriverSearchForm(request.POST)
