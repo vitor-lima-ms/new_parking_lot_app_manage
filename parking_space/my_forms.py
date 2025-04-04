@@ -5,7 +5,7 @@ from driver.models import Driver
 
 """Allows you to create new parking spaces"""
 CHOICES_LIST = list()
-for i in range(101):
+for i in range(1, 101):
     CHOICES_LIST.append((i, str(i)))
 
 class ParkingSpaceCreationForm(forms.Form):
