@@ -8,4 +8,4 @@ class VehicleRegisterForm(forms.Form):
 
 """Form to search for vehicle by name"""
 class VehicleSearchForm(forms.Form):
-    plate_search = forms.CharField(max_length=50)
+    plate_search = forms.CharField(max_length=7)
