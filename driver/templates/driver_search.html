@@ -1,5 +1,12 @@
 {% extends "core_index.html" %}
 
+{% block title %} | Busca de motoristas{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "driver_search.css" %}">
+{% endblock css %}
+
 {% block content %}
     <h2>Resultado da busca - Motoristas</h2>
     <section>
