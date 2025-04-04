@@ -23,6 +23,8 @@ urlpatterns = [
     path('driver/', include('driver.urls')),
     path('vehicle/', include('vehicle.urls')),
     path('parking_space/', include('parking_space.urls')),
+    path('user_auth/', include('django.contrib.auth.urls')),
+    path('user_auth/', include('user_auth.urls')),
     path('', include('core.urls')),    
     path('admin_panel/', admin.site.urls),    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
