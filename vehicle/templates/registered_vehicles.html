@@ -1,17 +1,24 @@
 {% extends "core_index.html" %}
 
+{% block title %} | Automóveis cadastrados{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "registered_vehicles.css" %}">
+{% endblock css %}
+
 {% block content %}
-    <h2>Automóveis cadastrados</h2>
-    <section>
+    <section id="first_sec">
+        <h2>Automóveis cadastrados</h2>
         <form action="{% url "vehicle:plate_search" %}" method="post">
             {% csrf_token %}
-            Placa do veículo: {{ form.plate_search }}
+            <b>Placa do veículo:</b> {{ form.plate_search }}
             <input type="submit" value="Buscar">
             <br>
             <br>
         </form>
     </section>
-    <section>
+    <section id="second_sec">
         {% for vehicle in all_registered_vehicles %}
             <div id="registered_vehicles">
                 <span><b>Modelo:</b> {{ vehicle.model }}</span><br>
