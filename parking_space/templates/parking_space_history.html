@@ -1,5 +1,12 @@
 {% extends "core_index.html" %}
 
+{% block title %} | Histórico de ocupação - {{ parking_space }}{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "parking_space_history.css" %}">
+{% endblock css %}
+
 {% block content %}
     <h2>Histórico de ocupação - {{ parking_space }}</h2>
     <section>
