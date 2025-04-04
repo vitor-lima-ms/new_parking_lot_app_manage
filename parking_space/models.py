@@ -19,7 +19,12 @@ class ParkingSpace(models.Model):
     history = models.JSONField(default=create_list, null=True)
 
     def __str__(self):
+        if self.id < 10:
+            return f'Vaga 00{self.id}'
+        elif self.id < 100:
+            return f'Vaga 0{self.id}'
         return f'Vaga {self.id}'
+        
     
     """Function to remove a veichle in a parking space"""
     def remove_auto(self):
