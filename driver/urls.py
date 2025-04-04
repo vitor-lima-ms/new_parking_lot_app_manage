@@ -10,7 +10,5 @@ urlpatterns = [
 
     path('registered', views.registered_drivers, name='registered_drivers'),
 
-    path('list_docs', views.list_docs, name='list_docs'),
-        
     path('search', views.driver_search, name='driver_search'),
 ]
