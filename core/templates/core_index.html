@@ -13,6 +13,13 @@
 <body>
     <header>
         <h1>Estacionamento do Bosque</h1>
+        {% if user.is_authenticated %}
+            <h3><a id="login_link" href="{% url "user_auth:logout_user" %}">Logout</a></h3>
+        {% else %}
+            <h3><a id="logout_link" href="{% url "user_auth:login_user" %}">Login</a></h3>
+        {% endif %}
+        {% comment %} In other cases, this should also be placed in the else. But since I want to allow new users to be created only if someone is logged in, since this is a parking control system (only employees should be able to register other users) {% endcomment %}
+        <h3><a id="register_link" href="{% url "user_auth:register_user" %}">Registrar usuário</a></h3>
     </header>    
     <nav>
         <a class="nav_link" href="{% url "driver:driver_register_form" %}">Cadastro de motoristas</a>
@@ -27,6 +34,11 @@
     <main>
         {% block content %}
             <section id="first_sec">
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
                 <h2 class="sec_title">Vagas disponíveis</h2>
                 <div id="unoccupied_parking">
                     {% for parking_space in parking_spaces %}
