@@ -9,14 +9,16 @@
 
 {% block content %}
     <h2>Histórico de ocupação - {{ parking_space }}</h2>
-    <section>
+    <section id="first_sec">
         {% for vehicle in parking_space.history %}
-            <b>Automóvel:</b> {{ vehicle.model }}<br>
-            <b>Motorista:</b> {{ vehicle.driver }}<br>
-            <b>Entrada:</b> {{ vehicle.checkin_datetime }}<br>
-            <b>Saída:</b> {{ vehicle.checkout_datetime }}<br>
-            <b>Tempo total:</b> {{ vehicle.total_time }}<br>
-            <br>
+            <div id="parking_history">
+                <b>Automóvel:</b> {{ vehicle.model }}<br>
+                <b>Motorista:</b> {{ vehicle.driver }}<br>
+                <b>Entrada:</b> {{ vehicle.checkin_datetime }}<br>
+                <b>Saída:</b> {{ vehicle.checkout_datetime }}<br>
+                <b>Tempo total:</b> {{ vehicle.total_time }}<br>
+                <br>
+            </div>            
         {% endfor %}
     </section>
 {% endblock content %}
