@@ -1,5 +1,12 @@
 {% extends "core_index.html" %}
 
+{% block title %} | Registrar motorista{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "driver_register_form.css" %}">
+{% endblock css %}
+
 {% block content %}
     <h2>Cadastrar motorista</h2>
     {% if register_error %}
