@@ -15,22 +15,108 @@
         {{ cpf_error }}
         <form action="{% url "driver:saving_driver" %}" method="post">
             {% csrf_token %}
-            <span>Nome: {{ form.driver_name }}</span><br>
-            <span>Mensalista: {{ form.monthly }}</span><br>
-            <span>CNH: {{ form.cnh }}</span><br>
-            <span>CPF: {{ form.cpf }}</span><br>
-            <span>Documento: {{ form.file_upload }}</span><br>
-            <input type="submit" value="Enviar">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            Nome
+                        </td>
+                        <td>
+                            {{ form.driver_name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Mensalista
+                        </td>
+                        <td>
+                            {{ form.monthly }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            CNH
+                        </td>
+                        <td>
+                            {{ form.cnh }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            CPF
+                        </td>
+                        <td>
+                            {{ form.cpf }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Documento
+                        </td>
+                        <td>
+                            {{ form.file_upload }}
+                        </td>
+                    </tr>
+                    <tr colspan="2">
+                        <td>
+                            <input type="submit" value="Enviar">
+                        </td>                        
+                    </tr>                    
+                </tbody>
+            </table>
         </form>
     {% else %}
-        <form action="{% url "driver:saving_driver" %}" method="post" enctype="multipart/form-data">
+        <form action="{% url "driver:saving_driver" %}" method="post">
             {% csrf_token %}
-            <span>Nome: {{ form.driver_name }}</span><br>
-            <span>Mensalista: {{ form.monthly }}</span><br>
-            <span>CNH: {{ form.cnh }}</span><br>
-            <span>CPF: {{ form.cpf }}</span><br>
-            <span>Documento: {{ form.file_upload }}</span><br>
-            <input type="submit" value="Enviar">
-        </form>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            Nome
+                        </td>
+                        <td>
+                            {{ form.driver_name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Mensalista
+                        </td>
+                        <td>
+                            {{ form.monthly }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            CNH
+                        </td>
+                        <td>
+                            {{ form.cnh }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            CPF
+                        </td>
+                        <td>
+                            {{ form.cpf }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Documento
+                        </td>
+                        <td>
+                            {{ form.file_upload }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="Enviar">
+                        </td>
+                    </tr>                    
+                </tbody>
+            </table>
+        </form>                     
     {% endif %}
 {% endblock content %}
