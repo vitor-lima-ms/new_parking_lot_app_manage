@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from datetime import datetime, timezone
 from base_dir.functions import price_calculator
 from vehicle.models import Vehicle
+from django.contrib import messages
 
 # Create your views here.
 
@@ -61,5 +62,7 @@ def finish(request, parking_space_id, vehicle_id):
     vehicle.driver = None
     vehicle.save()
     parking_space.save()
+
+    messages.success(request, "Saída registrada com sucesso!")
 
     return redirect('core:index')
