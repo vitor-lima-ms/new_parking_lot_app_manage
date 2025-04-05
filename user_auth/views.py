@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from user_auth.my_forms import LoginForm
@@ -29,6 +30,7 @@ def logout_user(request):
     messages.success(request, "Logout realizado com sucesso!")
     return redirect('core:index')
 
+@login_required
 def register_user(request):
     if request.method == "POST":
         form = RegisterUserForm(request.POST)
