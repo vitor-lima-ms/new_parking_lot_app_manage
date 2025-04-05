@@ -5,7 +5,6 @@ from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from base_dir.functions import cpf_validator
 from django.db import models
-
 # Create your views here.
 
 """View that allows create instances of Driver"""
