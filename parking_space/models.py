@@ -37,7 +37,7 @@ class ParkingSpace(models.Model):
         occupied_by = self.occupied_by
         driver = self.occupied_by.driver
         vehicle_plate = self.occupied_by.vehicle_plate
-        checkin_datetime = self.occupied_by.checkin_datetime.replace(hour=(self.occupied_by.checkin_datetime.hour) - 3) # -3 because Brazilian time is 3 hours behind UTC
+        checkin_datetime = self.occupied_by.checkin_datetime - timedelta(hours=3) # -3 because Brazilian time is 3 hours behind UTC
         total_time = current_datetime - self.occupied_by.checkin_datetime
 
         self.history.append({
