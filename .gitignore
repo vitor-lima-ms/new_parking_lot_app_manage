@@ -2,3 +2,6 @@
 settings.py
 /venv
 *.pyc
+__pycache__
+*.*~
+.idea
