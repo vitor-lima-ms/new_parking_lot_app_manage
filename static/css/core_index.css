@@ -5,7 +5,7 @@
     justify-content: center;
 }
 .sec_title {
-    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 0.25em 0.25em 0.25em rgba(0, 0, 0, 0.5);
 }
 #unoccupied_parking {
     display: flex;
@@ -14,14 +14,14 @@
     justify-content: space-evenly;    
 }
 .parking_link {
-    margin: 8px;
-    padding: 4px;
+    margin: 0.5em;
+    padding: 0.25em;
     font-size: large;
     font-weight: 700;
     text-decoration: none;
     background-color: #FF8811;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
-    border-radius: 8px;
+    box-shadow: 0.25em 0.25em 0.25em rgba(0, 0, 0, 0.5);
+    border-radius: 0.5em;
     color: #392F5A;
 }
 .parking_link:hover{
@@ -34,10 +34,11 @@
     justify-content: center;
 }
 #form {
-    padding: 8px;
+    padding: 0.5em;
+    margin-bottom: 1em;
     background-color: #FF8811;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
-    border-radius: 8px;
+    box-shadow: 0.25em 0.25em 0.25em rgba(0, 0, 0, 0.5);
+    border-radius: 0.5em;
 }
 b {
     font-size: larger;
